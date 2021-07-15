@@ -30,10 +30,16 @@ async function find(){
           return users
 }
 
+/* ANOTHER WAY
+function find() {
+  return db("users as u")
+    .join("roles as r", "u.role", "=", "r.id")
+    .select("u.user_id", "u.username", "r.role_name as role_name");
+
+*/
 
 
-
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
 
   /**[x]
     You will need to join two tables.
@@ -58,10 +64,17 @@ async function findBy(role_name) {
       return roleName;
 }
 
+/*ANOTHER WAY
+function findBy(filter) {
+  return db('users as u')
+      .select('u.user_id as user_id', 'u.username as username', 'u.password as password', 'r.role_name as role_name')
+      .innerJoin("roles as r", "r.role_id", "u.role_id")
+      .where(filter)
+}
+*/
 
 
-
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   /**
     You will need to join two tables.
@@ -98,9 +111,16 @@ async function findById(user_id) {
 
     return returnedObject; 
 }
-////Don't know how to get this one working
-
-
+//***THE ABOVE NOT WORKING */
+/*
+function findById(user_id) {
+  return db('users as u')
+      .select('u.user_id as user_id', 'u.username as username', 'r.role_name as role_name')
+      .innerJoin("roles as r", "r.role_id", "u.role_id")
+      .where('u.user_id', user_id)
+}
+*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 /**
